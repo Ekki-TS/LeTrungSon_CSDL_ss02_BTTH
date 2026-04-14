@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS BORROW_BOOKS; 
+DROP TABLE IF EXISTS BOOKS; 
+
+CREATE TABLE BOOKS (
+    book_id CHAR(5) PRIMARY KEY, 
+    book_name VARCHAR(200) NOT NULL, 
+    book_quantity INT CHECK (book_quantity >= 0),
+    book_rent DECIMAL (10,2) DEFAULT 5000.00
+);
+
+ALTER TABLE BOOKS ADD input_date DATE;
+
+CREATE TABLE BORROW_BOOKS (
+    br_code INT NOT NULL AUTO_INCREMENT, 
+    book_id CHAR(5) NOT NULL, 
+    NgayMuon DATE,
+    PRIMARY KEY (br_code),
+    CONSTRAINT FK_Borrow_Books FOREIGN KEY (book_id) REFERENCES BOOKS (book_id)
+);
+
+SELECT * FROM BOOKS; 
+SELECT * FROM BORROW_BOOKS;
